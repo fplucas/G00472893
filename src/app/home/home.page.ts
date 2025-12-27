@@ -37,4 +37,9 @@ export class HomePage {
     this.recipes = result.data.results;
   }
 
+  async openRecipe(recipe: any) {
+    await this.mds.set("selectedRecipe", recipe.id);
+    this.router.navigate(['/recipe-details']);
+  }
+
 }

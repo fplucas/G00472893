@@ -5,9 +5,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">RecipeDetails</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-header collapse="condense"> </ion-header>
+  <ion-toolbar>
+    <ion-title size="large">{{ recipeDetails?.title }}</ion-title>
+  </ion-toolbar>
+  <img src="{{ recipeDetails?.image }}" alt="" />
+
+  <ion-card *ngFor="let ingredient of recipeDetails?.extendedIngredients">
+    <img src="{{ imagesCdn }}{{ ingredient.image }} " />
+    <ion-card-header>
+      <ion-card-title>{{ ingredient.original }}</ion-card-title>
+      <ion-card-subtitle
+        >{{ ingredient?.measures[measures]["amount"] }} {{
+        ingredient?.measures[measures]["unitLong"] }}</ion-card-subtitle
+      >
+    </ion-card-header>
+  </ion-card>
+  <ion-button (click)="toggleFavourites()"
+    >{{ favouriteButtonText }}</ion-button
+  >
 </ion-content>
