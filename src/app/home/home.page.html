@@ -7,6 +7,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-input label="Enter Ingredients" placeholder="Ingredients separated by comma"></ion-input>
-  <ion-button>SEARCH</ion-button>
+  <ion-input [(ngModel)]="searchString" label="Enter Ingredients" placeholder="Ingredients separated by comma"></ion-input>
+  <ion-button (click)="search()">SEARCH</ion-button>
+
+  <ion-card *ngFor="let recipe of recipes">
+    <img src="{{ recipe.image }} ">
+    <ion-card-header>
+      <ion-card-title>{{ recipe.title }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-button>DETAILS</ion-button>
+  </ion-card>
 </ion-content>
