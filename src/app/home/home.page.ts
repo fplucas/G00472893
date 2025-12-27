@@ -4,26 +4,27 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { MyDataService } from '../services/my-data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
   imports: [FormsModule, IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
 })
 export class HomePage {
 
   searchString: string;
-  apiKey: string = "";
   options: HttpOptions = {
     url: "https://api.spoonacular.com/recipes/complexSearch",
     params: {
-      apiKey: this.apiKey
+      apiKey: environment.apiKey,
     }
   }
   recipes: any = [];
 
-  constructor(private mhs: MyHttpService) {
+  constructor(private mds: MyDataService, private mhs: MyHttpService, private router: Router) {
     this.searchString = "";
   }
 
