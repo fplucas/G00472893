@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonList, IonItem, IonLabel, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
 import { environment } from 'src/environments/environment';
@@ -11,7 +11,7 @@ import { MyDataService } from '../services/my-data.service';
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.page.html',
   standalone: true,
-  imports: [IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonList, IonItem, IonLabel, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 
 export class RecipeDetailsPage implements OnInit {
@@ -44,7 +44,6 @@ export class RecipeDetailsPage implements OnInit {
     await this.getRecipeId();
     let result = await this.mhs.get(this.options);
     this.recipeDetails = result.data;
-    console.log(result.data.extendedIngredients)
   }
 
   async getRecipeId() {
@@ -73,7 +72,6 @@ export class RecipeDetailsPage implements OnInit {
 
   async getmeasurementType() {
     let measurementType = await this.mds.get("measurementType") || "metric";
-    console.log(measurementType);
     this.measurementType = measurementType;
   }
 

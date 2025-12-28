@@ -16,12 +16,17 @@
     <ion-card-header>
       <ion-card-title>{{ ingredient.original }}</ion-card-title>
       <ion-card-subtitle
-        >{{ ingredient?.measures[measurementType]["amount"] }} {{
+      >{{ ingredient?.measures[measurementType]["amount"] }} {{
         ingredient?.measures[measurementType]["unitLong"] }}</ion-card-subtitle
       >
     </ion-card-header>
   </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let step of recipeDetails?.analyzedInstructions['0'].steps">
+      <ion-label>{{ step.number }}. {{ step.step }}</ion-label>
+    </ion-item>
+  </ion-list>
   <ion-button (click)="toggleFavourites()"
-    >{{ favouriteButtonText }}</ion-button
+  >{{ favouriteButtonText }}</ion-button
   >
 </ion-content>
