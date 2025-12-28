@@ -9,7 +9,7 @@
     <h1>Display recipe measurements in:</h1>
   </ion-text>
 
-  <ion-radio-group value="metric" [(ngModel)]="measure" (ionChange)="setMeasureSetting()">
+  <ion-radio-group value="metric" [(ngModel)]="measurementType" (ionChange)="setMeasurementType()">
     <ion-radio value="metric">Metric</ion-radio><br />
     <ion-radio value="us">US</ion-radio>
   </ion-radio-group>

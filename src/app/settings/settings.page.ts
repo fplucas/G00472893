@@ -12,24 +12,24 @@ import { MyDataService } from '../services/my-data.service';
 })
 export class SettingsPage implements OnInit {
 
-  measure!: string;
+  measurementType!: string;
 
   constructor(private mds: MyDataService) {
   }
 
   ngOnInit() {
-    this.updateMeasureSetting();
+    this.updateMeasurementType();
   }
 
-  async updateMeasureSetting(): Promise<void> {
-    let measure = await this.mds.get("measure");
+  async updateMeasurementType(): Promise<void> {
+    let measurementType = await this.mds.get("measurementType");
     // Set this.measure to metric if null
-    this.measure = measure || "metric";
-    this.setMeasureSetting();
+    this.measurementType = measurementType || "metric";
+    this.setMeasurementType();
   }
 
-  async setMeasureSetting(): Promise<void> {
-    await this.mds.set("measure", this.measure)
+  async setMeasurementType(): Promise<void> {
+    await this.mds.set("measurementType", this.measurementType)
   }
 
 }

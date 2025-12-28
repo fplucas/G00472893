@@ -28,12 +28,13 @@ export class RecipeDetailsPage implements OnInit {
   favourites: { [key: string]: { title: string; image: string } } = {};
   isFavourite!: boolean;
   favouriteButtonText!: string;
-  measures: string = "metric";
+  measurementType: string = "metric";
 
   constructor(private mhs: MyHttpService, private mds: MyDataService) {
   }
 
   ngOnInit() {
+    this.getmeasurementType();
     this.isRecipeAFavourite();
     this.getRecipeDetails();
     this.isRecipeAFavourite();
@@ -68,6 +69,12 @@ export class RecipeDetailsPage implements OnInit {
 
   async getFavourites() {
     return await this.mds.get("favourites") || {};
+  }
+
+  async getmeasurementType() {
+    let measurementType = await this.mds.get("measurementType") || "metric";
+    console.log(measurementType);
+    this.measurementType = measurementType;
   }
 
   async isRecipeAFavourite() {
