@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Favourites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let key of objectKeys(favourites)">
+    <img src="{{ favourites[key].image }} ">
+    <ion-card-header>
+      <ion-card-title>{{ favourites[key].title }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-button (click)="openRecipe(key)">DETAILS</ion-button>
+  </ion-card>
+</ion-content>
