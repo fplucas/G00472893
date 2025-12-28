@@ -13,6 +13,7 @@ import { MyDataService } from '../services/my-data.service';
   standalone: true,
   imports: [IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class RecipeDetailsPage implements OnInit {
 
   recipeId: number = 0;
@@ -24,7 +25,7 @@ export class RecipeDetailsPage implements OnInit {
   }
   recipeDetails: any;
   imagesCdn: string = "https://spoonacular.com/cdn/ingredients_100x100/";
-  favourites: number[] = [];
+  favourites: { [key: string]: { title: string; image: string } } = {};
   isFavourite!: boolean;
   favouriteButtonText!: string;
   measures: string = "metric";
@@ -52,12 +53,13 @@ export class RecipeDetailsPage implements OnInit {
 
   async toggleFavourites() {
     // If favourites is null, instantiate it as an empty array
+    console.log(this.recipeDetails)
     this.favourites = await this.getFavourites();
-    if (this.favourites.includes(this.recipeId)) {
+    if (this.favourites.hasOwnProperty(this.recipeId)) {
       // assign this.favourites a new array without the current recipeId
-      this.favourites = this.favourites.filter(v => v !== this.recipeId);
+      delete this.favourites[this.recipeId];
     } else {
-      this.favourites.push(this.recipeId);
+      this.favourites[this.recipeId] = { 'title': this.recipeDetails.title, 'image': this.recipeDetails.image };
     }
     this.isFavourite = !this.isFavourite;
     this.updateFavouriteButtonText();
@@ -65,17 +67,17 @@ export class RecipeDetailsPage implements OnInit {
   }
 
   async getFavourites() {
-    return await this.mds.get("favourites") || [];
+    return await this.mds.get("favourites") || {};
   }
 
   async isRecipeAFavourite() {
-    let result =  await this.getFavourites();
-    this.isFavourite = result.includes(this.recipeId);
+    let result = await this.getFavourites();
+    this.isFavourite = result.hasOwnProperty(this.recipeId);
     this.updateFavouriteButtonText();
   }
 
   updateFavouriteButtonText() {
-    if(this.isFavourite) {
+    if (this.isFavourite) {
       this.favouriteButtonText = "Remove from Favourites";
     } else {
       this.favouriteButtonText = "Add to Favourites ❤";
