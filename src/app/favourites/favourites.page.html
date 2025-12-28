@@ -13,4 +13,9 @@
 
     <ion-button (click)="openRecipe(key)">DETAILS</ion-button>
   </ion-card>
+  <ion-card *ngIf="objectKeys(favourites).length === 0">
+    <ion-card-header>
+      <ion-title>No favourites</ion-title>
+    </ion-card-header>
+</ion-card>
 </ion-content>
