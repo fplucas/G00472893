@@ -6,12 +6,13 @@ import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
 import { environment } from 'src/environments/environment';
 import { MyDataService } from '../services/my-data.service';
+import { HeaderComponent } from '../shared/header/header.component';
 
 @Component({
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.page.html',
   standalone: true,
-  imports: [IonList, IonItem, IonLabel, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [HeaderComponent, IonList, IonItem, IonLabel, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 
 export class RecipeDetailsPage implements OnInit {
@@ -29,6 +30,8 @@ export class RecipeDetailsPage implements OnInit {
   isFavourite!: boolean;
   favouriteButtonText!: string;
   measurementType: string = "metric";
+  buttonColour: string = "primary";
+  buttonFill: string = "solid";
 
   constructor(private mhs: MyHttpService, private mds: MyDataService) {
   }
@@ -53,7 +56,6 @@ export class RecipeDetailsPage implements OnInit {
 
   async toggleFavourites() {
     // If favourites is null, instantiate it as an empty array
-    console.log(this.recipeDetails)
     this.favourites = await this.getFavourites();
     if (this.favourites.hasOwnProperty(this.recipeId)) {
       // assign this.favourites a new array without the current recipeId
@@ -84,8 +86,12 @@ export class RecipeDetailsPage implements OnInit {
   updateFavouriteButtonText() {
     if (this.isFavourite) {
       this.favouriteButtonText = "Remove from Favourites";
+      this.buttonColour = "danger";
+      this.buttonFill = "outline";
     } else {
-      this.favouriteButtonText = "Add to Favourites ❤";
+      this.favouriteButtonText = "Add to Favourites";
+      this.buttonColour = "primary";
+      this.buttonFill = "solid";
     }
   }
 

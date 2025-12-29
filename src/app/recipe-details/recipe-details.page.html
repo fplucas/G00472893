@@ -1,7 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>RecipeDetails</ion-title>
-  </ion-toolbar>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -26,7 +24,7 @@
       <ion-label>{{ step.number }}. {{ step.step }}</ion-label>
     </ion-item>
   </ion-list>
-  <ion-button (click)="toggleFavourites()"
+  <ion-button fill="{{ buttonFill }}" color="{{ buttonColour }}" (click)="toggleFavourites()"
   >{{ favouriteButtonText }}</ion-button
   >
 </ion-content>
