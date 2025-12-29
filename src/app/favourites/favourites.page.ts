@@ -25,7 +25,6 @@ export class FavouritesPage implements OnInit {
 
   async getFavourites() {
     this.favourites = await this.mds.get("favourites") || {};
-    console.log(this.favourites);
   }
 
   async openRecipe(recipeId: any) {
