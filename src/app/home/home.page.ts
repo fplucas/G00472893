@@ -7,11 +7,12 @@ import { HttpOptions } from '@capacitor/core';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MyDataService } from '../services/my-data.service';
+import { HeaderComponent } from '../shared/header/header.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  imports: [FormsModule, IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
+  imports: [HeaderComponent, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
 })
 export class HomePage {
 

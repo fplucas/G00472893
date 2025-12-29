@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonText, IonRadioGroup, IonRadio, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonText, IonRadioGroup, IonRadio, IonContent, IonHeader, IonTitle } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
+import { HeaderComponent } from '../shared/header/header.component';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   standalone: true,
-  imports: [IonText, IonRadioGroup, IonRadio, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [HeaderComponent, IonText, IonRadioGroup, IonRadio, IonContent, IonHeader, IonTitle, CommonModule, FormsModule]
 })
 export class SettingsPage implements OnInit {
 

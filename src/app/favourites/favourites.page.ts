@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCard, IonCardHeader, IonCardTitle, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonCard, IonCardHeader, IonCardTitle, IonButton, IonContent, IonHeader, IonTitle } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../shared/header/header.component';
 
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.page.html',
   standalone: true,
-  imports: [IonCard, IonCardHeader, IonCardTitle, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [HeaderComponent, IonCard, IonCardHeader, IonCardTitle, IonButton, IonContent, IonHeader, IonTitle, CommonModule, FormsModule]
 })
 export class FavouritesPage implements OnInit {
 
