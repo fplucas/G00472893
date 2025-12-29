@@ -17,7 +17,8 @@ import { HeaderComponent } from '../shared/header/header.component';
 
 export class RecipeDetailsPage implements OnInit {
 
-  recipeId: number = 0;
+  recipeId!: number;
+  spoonacularBaseUrl:string = "https://api.spoonacular.com/recipes/";
   options: HttpOptions = {
     url: "https://api.spoonacular.com/recipes/",
     params: {
@@ -37,22 +38,34 @@ export class RecipeDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getmeasurementType();
-    this.isRecipeAFavourite();
-    this.getRecipeDetails();
-    this.isRecipeAFavourite();
   }
 
-  async getRecipeDetails() {
+  async ionViewWillEnter() {
     await this.getRecipeId();
+    await this.getMeasurementType();
+    this.isRecipeAFavourite();
+    this.getRecipeDetails();
+  }
+
+  ionViewDidLeave() {
+    this.clearSelectedRecipe();
+  }
+
+  async clearSelectedRecipe() {
+    await this.mds.remove("selectedRecipe")
+  }
+
+
+  async getRecipeDetails() {
     let result = await this.mhs.get(this.options);
     this.recipeDetails = result.data;
   }
 
   async getRecipeId() {
     this.recipeId = await this.mds.get("selectedRecipe");
-    this.options['url'] = this.options.url.concat(`${this.recipeId}/information`);
+    this.options['url'] = this.spoonacularBaseUrl.concat(`${this.recipeId}/information`);
   }
+
 
   async toggleFavourites() {
     // If favourites is null, instantiate it as an empty array
@@ -72,7 +85,7 @@ export class RecipeDetailsPage implements OnInit {
     return await this.mds.get("favourites") || {};
   }
 
-  async getmeasurementType() {
+  async getMeasurementType() {
     let measurementType = await this.mds.get("measurementType") || "metric";
     this.measurementType = measurementType;
   }
