@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonContent } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MyHttpService } from '../services/my-http.service';
@@ -12,7 +12,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  imports: [HeaderComponent, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
+  imports: [HeaderComponent, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonInput, IonButton, IonHeader, IonContent, CommonModule],
 })
 export class HomePage {
 
